@@ -18,4 +18,14 @@ data class User(
             .mapNotNull { it.firstOrNull()?.toString() }
             .reduce { acc, s -> acc + s }
     }
+
+    companion object {
+        fun emptyUser() = User(
+            email = "",
+            gender = "",
+            id = 1,
+            name = "",
+            status = ""
+        )
+    }
 }

@@ -14,27 +14,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import net.paulbogdan.contactslist.R
-import net.paulbogdan.contactslist.model.Post
 import net.paulbogdan.contactslist.model.User
+import net.paulbogdan.contactslist.model.mockPost
+import net.paulbogdan.contactslist.model.mockProfile
 import net.paulbogdan.contactslist.ui.components.PostCard
 import net.paulbogdan.contactslist.ui.components.ProfileInfoCluster
 import net.paulbogdan.contactslist.ui.navigation.ContactsTopBar
 
-val mockProfile = User("Testmail@test.com", "male", 32, "John Doe", "Online")
-val mockPost = Post(
-    "This post contains lots of words and such bla bla bla it should overflow in 2 lines and it should go off now",
-    1,
-    "This is the post title",
-    2
-)
-
+@ExperimentalGlideComposeApi
 @Composable
 fun ProfileScreen(
     onBackButtonClick: () -> Unit,
     user: User
 ) {
-
     Scaffold(
         topBar = {
             ContactsTopBar(
@@ -51,11 +45,11 @@ fun ProfileScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item {
-                ProfileInfoCluster(user = mockProfile)
+                ProfileInfoCluster(user = user)
             }
             item { Spacer(modifier = Modifier.height(24.dp)) }
 
-            item { 
+            item {
                 PostCard(post = mockPost)
             }
             item {
@@ -65,9 +59,9 @@ fun ProfileScreen(
     }
 }
 
+@ExperimentalGlideComposeApi
 @Preview(showBackground = true)
 @Composable
 fun ProfileScreenPreview() {
-
     ProfileScreen({}, mockProfile)
 }

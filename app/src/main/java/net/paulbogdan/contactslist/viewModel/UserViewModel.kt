@@ -2,8 +2,6 @@ package net.paulbogdan.contactslist.viewModel
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.ui.input.key.Key.Companion.D
-import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -17,6 +15,7 @@ class UserViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     var userList = mutableStateListOf<User>()
+    var selectedUser = User.emptyUser()
 
     fun getUsers() {
         notifyIsLoading()
@@ -43,4 +42,9 @@ class UserViewModel @Inject constructor(
                 })
         )
     }
+
+    fun setActiveUser (user: User){
+        selectedUser = user
+    }
+
 }

@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.paulbogdan.contactslist.model.Post
-import net.paulbogdan.contactslist.ui.screens.mockPost
+import net.paulbogdan.contactslist.model.mockPost
 import net.paulbogdan.contactslist.ui.theme.AlmostBlack
 import net.paulbogdan.contactslist.ui.theme.DarkGray
 import net.paulbogdan.contactslist.ui.theme.InfoBoxGray

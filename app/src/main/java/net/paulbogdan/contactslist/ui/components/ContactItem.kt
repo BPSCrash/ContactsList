@@ -23,19 +23,24 @@ import net.paulbogdan.contactslist.R
 import net.paulbogdan.contactslist.model.User
 import net.paulbogdan.contactslist.ui.theme.IconGray
 import net.paulbogdan.contactslist.ui.theme.SFPro
+import net.paulbogdan.contactslist.viewModel.UserViewModel
 
 @ExperimentalGlideComposeApi
 @Composable
 fun ContactItem(
     user: User,
-    onContactClick: () -> Unit,
+    onContactClick: (user: User) -> Unit,
+    userViewModel: UserViewModel
 ) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable {
+                userViewModel.setActiveUser(user)
+                onContactClick(user)
+            }
             .background(Color.White)
             .padding(24.dp)
-            .clickable { onContactClick() }
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -48,7 +53,7 @@ fun ContactItem(
             ) {
                 if (user.id % 2 == 0) {
                     GlideImage(
-                        model = "https://picsum.photos/200/200/?temp=${System.currentTimeMillis()}",
+                        model = "https://picsum.photos/seed/${user.id}/200/200",
                         contentDescription = null,
                         modifier = Modifier.clip(CircleShape)
                     )
