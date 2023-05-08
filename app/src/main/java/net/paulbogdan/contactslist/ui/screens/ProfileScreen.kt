@@ -16,12 +16,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import net.paulbogdan.contactslist.R
 import net.paulbogdan.contactslist.model.Post
-import net.paulbogdan.contactslist.model.Profile
+import net.paulbogdan.contactslist.model.User
 import net.paulbogdan.contactslist.ui.components.PostCard
 import net.paulbogdan.contactslist.ui.components.ProfileInfoCluster
 import net.paulbogdan.contactslist.ui.navigation.ContactsTopBar
 
-val mockProfile = Profile("Testmail@test.com", "male", 32, "John Doe", "Online")
+val mockProfile = User("Testmail@test.com", "male", 32, "John Doe", "Online")
 val mockPost = Post(
     "This post contains lots of words and such bla bla bla it should overflow in 2 lines and it should go off now",
     1,
@@ -32,7 +32,7 @@ val mockPost = Post(
 @Composable
 fun ProfileScreen(
     onBackButtonClick: () -> Unit,
-    profile: Profile
+    user: User
 ) {
 
     Scaffold(
@@ -51,7 +51,7 @@ fun ProfileScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item {
-                ProfileInfoCluster(profile = mockProfile)
+                ProfileInfoCluster(user = mockProfile)
             }
             item { Spacer(modifier = Modifier.height(24.dp)) }
 

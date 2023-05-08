@@ -10,13 +10,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import net.paulbogdan.contactslist.model.Profile
+import net.paulbogdan.contactslist.model.User
 import net.paulbogdan.contactslist.ui.screens.mockProfile
 import net.paulbogdan.contactslist.ui.theme.AlmostBlack
 import net.paulbogdan.contactslist.ui.theme.DarkGray
 
 @Composable
-fun ProfileInfoCluster(profile: Profile) {
+fun ProfileInfoCluster(user: User) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -25,17 +25,17 @@ fun ProfileInfoCluster(profile: Profile) {
     ) {
 
         Box(Modifier.size(46.dp)) {
-            ImagePlaceholder()
+            ImagePlaceholder(user.getInitials())
         }
         Text(
-            text = profile.name,
+            text = user.name,
             style = MaterialTheme.typography.h1,
             fontWeight = FontWeight.Bold,
             fontSize = 17.sp,
             color = AlmostBlack
         )
         Text(
-            text = profile.email.lowercase(),
+            text = user.email.lowercase(),
             style = MaterialTheme.typography.caption,
             fontWeight = FontWeight.Normal,
             fontSize = 17.sp,
