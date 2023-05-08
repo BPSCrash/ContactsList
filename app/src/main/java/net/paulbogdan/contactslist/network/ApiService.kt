@@ -12,7 +12,7 @@ interface ApiService {
     @GET("/public/v2/users")
     fun getUsers(): Single<Response<List<User>>>
 
-    @GET("/public/v2/users{userId}/posts")
+    @GET("/public/v2/users/{userId}/posts")
     fun getUserPosts(@Path("userId") userId: Int): Single<Response<List<Post>>>
 
 }

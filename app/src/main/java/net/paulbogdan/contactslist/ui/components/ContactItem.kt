@@ -37,6 +37,7 @@ fun ContactItem(
             .fillMaxWidth()
             .clickable {
                 userViewModel.setActiveUser(user)
+                userViewModel.getUserPosts(user)
                 onContactClick(user)
             }
             .background(Color.White)
@@ -53,7 +54,7 @@ fun ContactItem(
             ) {
                 if (user.id % 2 == 0) {
                     GlideImage(
-                        model = "https://picsum.photos/seed/${user.id}/200/200",
+                        model = "https://picsum.photos/seed/${user.id}/200",
                         contentDescription = null,
                         modifier = Modifier.clip(CircleShape)
                     )
