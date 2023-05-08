@@ -23,7 +23,10 @@ import net.paulbogdan.contactslist.ui.theme.IconGray
 import net.paulbogdan.contactslist.ui.theme.SFPro
 
 @Composable
-fun ContactItem(onContactClick: () -> Unit) {
+fun ContactItem(
+    name: String,
+    onContactClick: () -> Unit,
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -43,7 +46,7 @@ fun ContactItem(onContactClick: () -> Unit) {
                 ImagePlaceholder()
             }
             Text(
-                text = "Alina Manolache", //GET NAME FROM ENDPOINT
+                text = name, //GET NAME FROM ENDPOINT
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.weight(1f)
 
@@ -78,5 +81,5 @@ fun ImagePlaceholder() {
 @Preview(showBackground = true)
 @Composable
 fun ContactPreview() {
-    ContactItem() {}
+    ContactItem(name = "John Doe") {}
 }
