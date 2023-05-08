@@ -28,11 +28,15 @@ fun ProfileInfoCluster(user: User) {
     ) {
 
         Box(Modifier.size(46.dp)) {
-            GlideImage(
-                model = "https://picsum.photos/seed/${user.id}/200/200",
-                contentDescription = null,
-                modifier = Modifier.clip(CircleShape)
-            )
+            if (user.id % 2 == 0) {
+                GlideImage(
+                    model = "https://picsum.photos/seed/${user.id}/200",
+                    contentDescription = null,
+                    modifier = Modifier.clip(CircleShape)
+                )
+            } else {
+                ImagePlaceholder(user.getInitials())
+            }
         }
         Text(
             text = user.name,
