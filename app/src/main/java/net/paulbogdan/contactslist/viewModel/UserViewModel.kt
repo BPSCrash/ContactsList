@@ -28,7 +28,7 @@ class UserViewModel @Inject constructor(
                 .subscribe({ response ->
                     if (response.isSuccessful) {
                         response.body()?.forEach { user ->
-                            userList.add(user)
+                           if(!userList.contains(user)) userList.add(user)
                         }
                     } else {
                         Log.d("GET USERS ERROR", response.toString())
