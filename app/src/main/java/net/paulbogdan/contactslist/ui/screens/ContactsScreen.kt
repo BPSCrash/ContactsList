@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -25,12 +24,10 @@ import net.paulbogdan.contactslist.viewModel.UserViewModel
 
 @ExperimentalGlideComposeApi
 @Composable
-fun ContactsScreen(userViewModel: UserViewModel) {
-
-    LaunchedEffect(key1 = true) {
-        userViewModel.getUsers()
-
-    }
+fun ContactsScreen(
+    userViewModel: UserViewModel,
+    onContactClick: () -> Unit
+) {
     val userList = userViewModel.userList
 
     Scaffold(
@@ -56,7 +53,7 @@ fun ContactsScreen(userViewModel: UserViewModel) {
             }
             userList.filter { it.status == "active" }.forEach { user ->
                 item {
-                    ContactItem(user) {}
+                    ContactItem(user, { onContactClick() }, userViewModel)
                 }
             }
         }
