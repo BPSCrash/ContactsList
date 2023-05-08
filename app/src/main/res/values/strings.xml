@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Contacts List</string>
+
+    <!-- Contacts Screen -->
+    <string name="contacts">Contacte</string>
+    <string name="my_contacts">Contactele mele</string>
+    <string name="contact_details">Detalii contact</string>
+
+    <!-- Content Description -->
+    <string name="see_profile">See profile</string>
+    <string name="back_button">Back to Contacts</string>
+
 </resources>
