@@ -22,12 +22,14 @@ import net.paulbogdan.contactslist.model.mockProfile
 import net.paulbogdan.contactslist.ui.components.PostCard
 import net.paulbogdan.contactslist.ui.components.ProfileInfoCluster
 import net.paulbogdan.contactslist.ui.navigation.ContactsTopBar
+import net.paulbogdan.contactslist.viewModel.UserViewModel
 
 @ExperimentalGlideComposeApi
 @Composable
 fun ProfileScreen(
     onBackButtonClick: () -> Unit,
-    user: User
+    userViewModel: UserViewModel,
+    user: User,
 ) {
     Scaffold(
         topBar = {
@@ -47,21 +49,11 @@ fun ProfileScreen(
             item {
                 ProfileInfoCluster(user = user)
             }
-            item { Spacer(modifier = Modifier.height(24.dp)) }
-
-            item {
-                PostCard(post = mockPost)
-            }
-            item {
-                PostCard(post = mockPost)
+            userViewModel.userPostsList.forEach { post ->
+                item {
+                    PostCard(post = post)
+                }
             }
         }
     }
-}
-
-@ExperimentalGlideComposeApi
-@Preview(showBackground = true)
-@Composable
-fun ProfileScreenPreview() {
-    ProfileScreen({}, mockProfile)
 }

@@ -46,6 +46,7 @@ fun AppNavGraph(
         ) {
             ProfileScreen(
                 onBackButtonClick = { navController.navigateUp() },
+                userViewModel = userViewModel,
                 user = userViewModel.selectedUser
             )
         }
