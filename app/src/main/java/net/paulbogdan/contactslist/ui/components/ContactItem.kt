@@ -15,16 +15,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import net.paulbogdan.contactslist.R
+import net.paulbogdan.contactslist.model.User
 import net.paulbogdan.contactslist.ui.theme.IconGray
 import net.paulbogdan.contactslist.ui.theme.SFPro
 
+@ExperimentalGlideComposeApi
 @Composable
 fun ContactItem(
-    name: String,
+    user: User,
     onContactClick: () -> Unit,
 ) {
     Box(
@@ -43,10 +46,19 @@ fun ContactItem(
                     .size(46.dp),
                 contentAlignment = Alignment.Center,
             ) {
-                ImagePlaceholder()
+                if (user.id % 2 == 0) {
+                    GlideImage(
+                        model = "https://picsum.photos/200/200/?temp=${System.currentTimeMillis()}",
+                        contentDescription = null,
+                        modifier = Modifier.clip(CircleShape)
+                    )
+                } else {
+                    ImagePlaceholder(user.getInitials())
+                }
+
             }
             Text(
-                text = name, //GET NAME FROM ENDPOINT
+                text = user.name,
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.weight(1f)
 
@@ -60,7 +72,7 @@ fun ContactItem(
 }
 
 @Composable
-fun ImagePlaceholder() {
+fun ImagePlaceholder(initials: String) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -69,17 +81,11 @@ fun ImagePlaceholder() {
             .clip(CircleShape)
     ) {
         Text(
-            text = "AT",
+            text = initials,
             fontFamily = SFPro,
             fontWeight = FontWeight.Bold,
             color = Color.White,
             fontSize = 17.sp
         )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ContactPreview() {
-    ContactItem(name = "John Doe") {}
 }

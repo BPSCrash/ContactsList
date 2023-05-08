@@ -3,6 +3,7 @@ package net.paulbogdan.contactslist.viewModel
 import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.input.key.Key.Companion.D
+import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -15,7 +16,7 @@ class UserViewModel @Inject constructor(
     private val apiService: ApiService,
 ) : BaseViewModel() {
 
-    var userList = mutableListOf<User>()
+    var userList = mutableStateListOf<User>()
 
     fun getUsers() {
         notifyIsLoading()
@@ -25,9 +26,9 @@ class UserViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
                     if (response.isSuccessful) {
-                        userList = response.body()!!.toMutableList()
-
-                        Log.d("LIST SUCCES", userList.toString())
+                        response.body()?.forEach { user ->
+                            userList.add(user)
+                        }
                     } else {
                         Log.d("GET USERS ERROR", response.toString())
                         this.onError = response.message()

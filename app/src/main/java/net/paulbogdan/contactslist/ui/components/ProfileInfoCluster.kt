@@ -25,7 +25,7 @@ fun ProfileInfoCluster(user: User) {
     ) {
 
         Box(Modifier.size(46.dp)) {
-            ImagePlaceholder()
+            ImagePlaceholder(user.getInitials())
         }
         Text(
             text = user.name,

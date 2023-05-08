@@ -1,6 +1,5 @@
 package net.paulbogdan.contactslist.ui.screens
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import net.paulbogdan.contactslist.R
 import net.paulbogdan.contactslist.ui.components.ContactItem
 import net.paulbogdan.contactslist.ui.navigation.ContactsTopBar
@@ -23,11 +23,13 @@ import net.paulbogdan.contactslist.ui.theme.CaptionGray
 import net.paulbogdan.contactslist.ui.theme.SFPro
 import net.paulbogdan.contactslist.viewModel.UserViewModel
 
+@ExperimentalGlideComposeApi
 @Composable
 fun ContactsScreen(userViewModel: UserViewModel) {
 
-    LaunchedEffect(key1 = true){
+    LaunchedEffect(key1 = true) {
         userViewModel.getUsers()
+
     }
     val userList = userViewModel.userList
 
@@ -42,7 +44,6 @@ fun ContactsScreen(userViewModel: UserViewModel) {
                 .background(BackgroundGray),
             verticalArrangement = Arrangement.spacedBy(1.dp)
         ) {
-
             item {
                 Text(
                     text = stringResource(id = R.string.my_contacts).uppercase(),
@@ -53,9 +54,9 @@ fun ContactsScreen(userViewModel: UserViewModel) {
                     modifier = Modifier.padding(horizontal = 24.dp, vertical = 10.dp)
                 )
             }
-            userList.forEach { user ->
+            userList.filter { it.status == "active" }.forEach { user ->
                 item {
-                    ContactItem(user.name, {})
+                    ContactItem(user) {}
                 }
             }
         }
