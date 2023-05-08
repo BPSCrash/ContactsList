@@ -1,6 +1,8 @@
 package net.paulbogdan.contactslist.ui.navigation
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -17,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import net.paulbogdan.contactslist.R
 import net.paulbogdan.contactslist.ui.theme.AlmostBlack
-import net.paulbogdan.contactslist.ui.theme.HeaderGray
 import net.paulbogdan.contactslist.ui.theme.SFPro
 
 @Composable
